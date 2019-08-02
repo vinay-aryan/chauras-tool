@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{E MMM dd HH:mm:ss yyyy} %c %-4p %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="appFileAppender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="file" value="/var/log/portal/portal-tool.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mmz}|%m%n"/>
+        </layout>
+       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+        <param name="ActiveFileName" value="/var/log/portal/portal-tool.log" />  
+        <param name="FileNamePattern" value="/var/log/portal/portal-tool.%d{yyyy-MM-dd}.log.gz" />
+      </rollingPolicy>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="500"/>
+        <appender-ref ref="appFileAppender"/>
+    </appender>
+
+    <logger name="app" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="ASYNC"/>
+    </logger>
+    
+    <root>
+        <level value="info"/>
+        <appender-ref ref="appFileAppender"/>
+    </root>
+</log4j:configuration>

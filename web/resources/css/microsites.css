@@ -1,0 +1,61 @@
+.ms-spinner {
+    background: url('../img/loader.gif');
+    background-position: center center;
+    height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 10px;
+}
+
+.msg-failure {
+	color:red;
+	background-color: #cecece;
+}
+
+.msg-success {
+	color: green;
+	background-color: #cecece;
+}
+
+body .modal-headers {
+    width: 1000px;
+    margin-left: -500px;
+    height: 550px;
+}
+
+.tooltip {
+    background-color:#000;
+    border:1px solid #fff;
+    padding:10px 15px;
+    width:200px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font-size:12px;
+ 
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000;
+}
+
+.fancy{
+	font-family:Georgia,Serif;
+}
+
+.showMediaInfo {
+	max-width: 300px;
+	max-height: 400px;
+}
+
+.fileInputGroup span {
+	text-align: center;
+	font-size: 12px;
+}
+
+.text-red {
+	color: #E20000;
+}
+
+.text-green {
+	color: #00CC44;
+}

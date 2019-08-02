@@ -1,0 +1,17 @@
+.spinner {
+    background: url('../img/loader.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 31px;
+    margin: 0 auto;
+    padding: 50px;
+    width: 31px;
+}
+
+.selected-pic {
+	background : #0088cc;
+}
+
+.span3:nth-child(4n+5) {
+	clear: left;
+}
