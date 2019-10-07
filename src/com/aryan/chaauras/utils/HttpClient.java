@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,6 +86,8 @@ public class HttpClient {
         if(username != null && !username.isEmpty()) {
             String authString = username + ":" + password;
             String encoding = new sun.misc.BASE64Encoder().encode(authString.getBytes());
+	//String(java.util.Base64.getMimeEncoder().encode(authString.getBytes()),
+        //                StandardCharsets.UTF_8);
             encoding = encoding.replaceAll("\\n", "");
             httpConnection.setRequestProperty("Authorization", "Basic " + encoding);
         }
@@ -128,7 +131,7 @@ public class HttpClient {
         }
     }
 
-    
+
     public static void postData(String url, String data) {
         HttpPost post = null;
         try {
@@ -149,7 +152,7 @@ public class HttpClient {
                 post.releaseConnection();
         }
     }
-    
+
     public static String doPostData(String url, String data) throws Exception{
         HttpPost post = null;
         try {
@@ -175,7 +178,7 @@ public class HttpClient {
         }
         return "";
     }
-    
+
     public static String postData(String url, String data, String charset) {
         HttpPost post = null;
         try {
@@ -279,7 +282,7 @@ public class HttpClient {
 
     /**
      * User Apache HTTP Library
-     * 
+     *
      * @param photoUrl
      * @return
      */
@@ -313,7 +316,7 @@ public class HttpClient {
     }
     /**
      * User Apache HTTP Library
-     * 
+     *
      * @param photoUrl
      * @return
      */
@@ -352,7 +355,7 @@ public class HttpClient {
         }
         return null;
     }
-    
+
     public static String getContent(String photoUrl, int timeOut, String charset) {
         HttpGet get = null;
         try {
@@ -517,8 +520,8 @@ public class HttpClient {
         return null;
     }
 
-   
 
-   
+
+
 
 }

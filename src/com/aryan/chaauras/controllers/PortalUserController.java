@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aryan.chaauras.common.Language;
 import com.aryan.chaauras.constants.Constants;
 import com.aryan.chaauras.dto.NavigationEnum;
 import com.aryan.chaauras.dto.Permission;
@@ -81,8 +82,10 @@ public class PortalUserController {
 	        String username = request.getParameter("username");
 	        String password = request.getParameter("password");
 	        String userEmailId = request.getParameter("emailId");
+	        String languages = request.getParameter("languages");
 	        String roleStr = request.getParameter("roles");
 	        List<String> roles = null;
+	        List<String> langs = null;
 	        if(!StringUtils.isEmpty(username)) {
 	            result += "User already exists!!";
 	            if(!userPasswordMap.containsKey(username)) {
@@ -90,16 +93,64 @@ public class PortalUserController {
 	                    String roleArr[] = roleStr.split(",");
 	                    roles = Arrays.asList(roleArr);
 	                }
+	                if(!StringUtils.isEmpty(languages)) {
+	                	String langArr[] = languages.split(",");
+	                    langs = Arrays.asList(langArr);
+	                }
 	                user.setPassword(Utils.md5(password));
 	                user.setUsername(username);
 	                user.setRoles(roles);
 	                user.setEmailId(userEmailId);
+	                user.setLanguage(langs);
 	                result = portalUserManageService.createUser(user);
 	            }
 	        }
 	        return result;
 	    }
 
+	    /**
+	     * Update an existing User for tool.
+	     * 
+	     * @param request
+	     * @param response
+	     * @return
+	     */
+	    @RequestMapping(value = { "/updateUser" })
+	    public @ResponseBody
+	    String updateUser(HttpServletRequest request, HttpServletResponse response) {
+	        logger.info("Updating User: updateUser()");
+	        String result = "FAILURE";
+	        PortalUser user = new PortalUser();
+	        String username = request.getParameter("username");
+	        String password = request.getParameter("password");
+	        String userEmailId = request.getParameter("emailId");
+	        String languages = request.getParameter("languages");
+	        String roleStr = request.getParameter("roles");
+	        List<String> roles = null;
+	        List<String> langs = null;
+	        if(!StringUtils.isEmpty(username)) {
+	            result += "User already exists!!";
+	            if(!userPasswordMap.containsKey(username)) {
+	                if(!StringUtils.isEmpty(roleStr)) {
+	                    String roleArr[] = roleStr.split(",");
+	                    roles = Arrays.asList(roleArr);
+	                }
+	                if(!StringUtils.isEmpty(languages)) {
+	                	String langArr[] = languages.split(",");
+	                    langs = Arrays.asList(langArr);
+	                }
+	                user.setPassword(Utils.md5(password));
+	                user.setUsername(username);
+	                user.setRoles(roles);
+	                user.setEmailId(userEmailId);
+	                user.setLanguage(langs);
+	                result = portalUserManageService.createUser(user);
+	            }
+	        }
+	        return result;
+	    }
+	    
+	    
 	    /**
 	     * Update Block Status
 	     * 
@@ -150,9 +201,17 @@ public class PortalUserController {
 	        models.put("roles", roles);
 	        models.put("permissions", NavigationEnum.values());
 	        models.put("subPermissions", SubNavEnum.values());
+	        models.put("languages", Language.values());
 	        models.put("users", users);
 	        return models;
 	    }
+	/*    
+	    public static void main(String[] args) {
+	    	 for(Language language : Language.values()){
+	             System.out.println("Language is :"+ language.getDisplayName());
+	      }
+	   }
+	*/
 
 	    /**
 	     * Unauthorized access page
@@ -226,7 +285,15 @@ public class PortalUserController {
 	        List<String> roles = userRoleMap.get(username);
 	        return roles;
 	    }
-
+	    
+	    /*
+	    
+	    @RequestMapping(value = { "/getRolesForUsers" })
+	    public @ResponseBody
+	    Map<String, List<String>> getRolesForUsers(HttpServletRequest request, HttpServletResponse response) {    
+	        return userRoleMap;
+	    }
+		*/
 	    @RequestMapping(value = { "/getBlockStatus" })
 	    public @ResponseBody
 	    String getBlockStatus(HttpServletRequest request, HttpServletResponse response) {
@@ -306,6 +373,10 @@ public class PortalUserController {
 	        }
 	        return permissionsListFinal;
 	    }
+	    /*
+	     * updateRole mapping updates roles with particular
+	     * permissions. if role is  not in db, it creates new role.
+	     */
 	    
 	    @RequestMapping(value = { "/updateRole" }, method = RequestMethod.POST)
 	    public @ResponseBody
@@ -328,4 +399,5 @@ public class PortalUserController {
 	        }
 	        return resp;
 	    }	  
+	   	  
 }

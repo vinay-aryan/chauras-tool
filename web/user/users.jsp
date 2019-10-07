@@ -28,6 +28,14 @@
 							<option value="${role.getRoleName()}">${role.getRoleName()}</option>
 						</c:forEach>
 					</select>
+					<br>
+					Select Language(s)
+					<br>
+					<select name="languages" multiple="multiple" id="langsSelect">
+						<c:forEach var="language" items="${languages}">
+							<option value="${language.getDisplayName()}">${language.getDisplayName()}</option>
+						</c:forEach>
+					</select> 
 				</form>
 				<input type="button" onClick="createUserSubmit();" value="Create User"> 
 			</div>
@@ -36,10 +44,12 @@
 	<script>
 	
 		function createUserSubmit() {
+			
 			var toolUserName = $("#toolUserName").val();
 			var toolPassword = $("#toolPassword").val();
 			var toolEmailId = $('#toolEmailId').val();
 			var rolesArr = $("#rolesSelect").val();
+			var langsArr = $('#langsSelect').val();
 			if (toolUserName == undefined || toolUserName == null) {
 				return;
 			}
@@ -52,13 +62,18 @@
 			if (rolesArr == undefined || rolesArr == null) {
 				return;
 			}
+			if (langsArr == undefined || langsArr == null) {
+				return;
+			}
 			var url = "/users/createUser";
 			var data = {
-				"toolUserName" : toolUserName,
-				"toolPassword" : toolPassword,
-				"toolEmailId" : toolEmailId,
-				"roles" : rolesArr.toString()
+				"username" : toolUserName,
+				"password" : toolPassword,
+				"emailId" : toolEmailId,
+				"roles" : rolesArr.toString(),
+				"languages" : langsArr.toString()
 			};
+			console.log(data);
 			$.post(url, data, function(res) {
 				if (res.indexOf("FAILURE") === -1) {
 					alert("User creation Successful");
@@ -69,6 +84,7 @@
 					alert("User creation FAILED: " + res);
 				}
 			});
+			return false;
 		}
 	</script>
 </body>

@@ -22,7 +22,7 @@
                      </select>
                       <input type="text" id="roleText" name="role" style="display:none"/>
                       <br/>
-                      <input type="checkbox" id="add" name="add" onchange="updateCheckedProperty(); return false;"/>Add Role                 
+                      <input type="checkbox" id="add" name="add" onchange="updateCheckedProperty(); return false;"/>To Add New Role Check here            
                      </div>
 		   </div>
 		   <div class="control-group">
@@ -33,8 +33,7 @@
                           		<option value="${permission.access}">${permission.name}</option>
                            </c:forEach>
                            <c:forEach var="subPermission" items="${subPermissions}">
-                          		<option value="${subPermission.moduleName.access}-${subPermission.access}">${subPermission.moduleName.name} - ${subPermission.name}</option>
-                          		
+                          		<option value="${subPermission.moduleName.access}-${subPermission.access}">${subPermission.moduleName.name} - ${subPermission.name}</option>               		
                            </c:forEach>
                      </select>                 
                 </div>
@@ -75,6 +74,7 @@ function submitManageRoles() {
 		return;
 	}
 	if(permissions == undefined || permissions == null) {
+		alert("must select at least one permission\n for this role!!!");
 		return;
 	}
 	var url = "/users/updateRole";
@@ -84,7 +84,7 @@ function submitManageRoles() {
 	};
 	$.post(url, data, function(res) {
 		if (res.indexOf("FAILURE") === -1) {
-			alert("Role added/updated successfully");
+			alert("User role added/updated successfully");
 			setTimeout(function() {
 				window.location.reload();
 			}, 500);

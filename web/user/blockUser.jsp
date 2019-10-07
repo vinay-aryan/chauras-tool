@@ -33,6 +33,7 @@
     </form>
     <input type="button" id="block_module" value="Block" class="btn btn-primary" style="margin-left: 50px; margin-top: 30px;" >
     <input type="button" id="unblock_module" value="Unblock" class="btn btn-primary" style="margin-left: 50px; margin-top: 30px;">
+  </div>
   <script>
 
 
