@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.aryan.chaauras.constants.Constants;
@@ -17,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Document(collection = Constants.USER_COLLECTION_NAME)
 @TypeAlias(Constants.USER_COLLECTION_NAME)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"username" , "emailId"})})
+
 public class PortalUser {
 	
+	//@Indexed(unique = true)
 	private String username;
 	private String password;
 	private List<String> languages;
@@ -30,6 +31,7 @@ public class PortalUser {
 	@JsonIgnore
 	private String group;
 	
+	//@Indexed(unique = true)
 	private String emailId;
 
 	public String getUsername() {
