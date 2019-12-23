@@ -91,8 +91,9 @@ public class PortalUserController {
 	            if(!userPasswordMap.containsKey(username)) {
 	                if(!StringUtils.isEmpty(roleStr)) {
 	                    String roleArr[] = roleStr.split(",");
-	                    roles = Arrays.asList(roleArr);
-	                }
+	                    roles = new ArrayList<>(Arrays.asList(roleArr));
+	            		roles.add("DEFAULT");
+	            	}
 	                if(!StringUtils.isEmpty(languages)) {
 	                	String langArr[] = languages.split(",");
 	                    langs = Arrays.asList(langArr);
@@ -400,4 +401,11 @@ public class PortalUserController {
 	        return resp;
 	    }	  
 	   	  
+	   /* public static void main(String[] args) {
+			String[] strarr = {"ROLE1","ROLE2"};
+			List<String> list = new ArrayList<>(Arrays.asList(strarr));
+			list.add("DEFAULT");
+
+			list.add("hel");
+		}*/
 }
