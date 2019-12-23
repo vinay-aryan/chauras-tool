@@ -40,6 +40,7 @@
 		<intercept-url pattern="/**" access="hasRole('DEFAULT')"/>
 		<form-login login-page="/toolLogin" 
 		username-parameter="username" password-parameter="password"
+		authentication-success-handler-ref="customSuccessHandler"
 		authentication-failure-url="/toolLogin?auth=fail"/>
 		<logout logout-url="/logout" logout-success-url="/toolLogin?auth=logout" />
 
@@ -54,8 +55,12 @@
         <authentication-provider  ref='authenticationProvider'></authentication-provider>
     </authentication-manager>
     
+    
     <beans:bean id="authenticationProvider" class="com.aryan.chaauras.security.ToolAuthenticator">
     </beans:bean>
+    
+    <!-- <beans:bean id="customSuccessHandler" class="com.aryan.chaauras.security.CustomSuccessHandler">
+    </beans:bean> -->
     
     <global-method-security pre-post-annotations="enabled"/>
 

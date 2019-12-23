@@ -13,8 +13,10 @@ public class Constants {
     
     public static final String USER_COLLECTION_NAME = "user";
     public static final String PARTNER_COLLECTION_NAME = "partner";
-    public static final String TPPOST_COLLECTION_NAME = "posts";
+    public static final String TPPOST_COLLECTION_NAME = "post";
     public static final String ROLE_COLLECTION_NAME = "role";
+    public static final String TAG_COLLECTION_NAME = "tag";
+    public static final String CATEGORY_COLLECTION_NAME = "category";
     public static final String GROUP_COLLECTION_NAME = "groupp";
     public static final String PRIVILEGE_COLLECTION_NAME = "privilege";
     public static final String PROJECT_COLLECTION_NAME = "project";

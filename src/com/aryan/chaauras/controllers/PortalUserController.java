@@ -92,10 +92,8 @@ public class PortalUserController {
 	                if(!StringUtils.isEmpty(roleStr)) {
 	                    String roleArr[] = roleStr.split(",");
 	                    roles = Arrays.asList(roleArr);
-	                }
-	                if(!StringUtils.isEmpty(languages)) {
-	                	String langArr[] = languages.split(",");
-	                    langs = Arrays.asList(langArr);
+	                    
+                    	roles.add("USER");
 	                }
 	                user.setPassword(Utils.md5(password));
 	                user.setUsername(username);
