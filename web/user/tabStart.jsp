@@ -19,31 +19,45 @@
         <div class="tabs_container">
             <jsp:include page="header.jsp" />
             <jsp:include page="../common/nav.jsp"/>
-            <ul class="nav nav-tabs" style="margin-top: 100px;" id="myTab">
-                <li class="active"><a href="#tab_createUser" data-toggle="tab">Create Users</a></li>
-                <li><a href="#tab_manageUserRoles" data-toggle="tab">Manage Users</a></li>
-                <li><a href="#tab_manageRoles" data-toggle="tab">Mange Roles</a></li>
-                <li><a href="#tab_addRemoveRoles" data-toggle="tab">Add/Remove Roles</a></li>
-                <li><a href="#tab_blockUser" data-toggle="tab">Block users</a></li>
-            </ul>
-
-            <div class="tab-content" style="margin-top: 50px;">
-                <div class="tab-pane active" id="tab_createUser">
-                    <%@ include file="users.jsp"%>
-                </div>
-                <div class="tab-pane" id="tab_manageRoles">
-                    <%@ include file="manageRoles.jsp"%>
-                </div>
-                <div class="tab-pane" id="tab_manageUserRoles">
-                    <%@ include file="manageUserRoles.jsp"%>
-                </div>
-                 <div class="tab-pane" id="tab_addRemoveRoles">
-                    <%@ include file="addRemoveRoles.jsp"%>
-                </div>
-                <div class="tab-pane" id="tab_blockUser">
-                    <%@ include file="blockUser.jsp"%>
-                </div>
-            </div>
+            <div class="wrapper">
+	            <nav id="sidebar">
+		            <ul class="list-unstyled components" id="myTab">
+		                <p> Manage Users </p>
+		                <li class="active"><a href="#tab_createUser" data-toggle="tab">Create Users</a></li>
+		                <li><a href="#tab_manageUserRoles" data-toggle="tab">Update Users Role</a></li>
+		                <li><a href="#tab_blockUser" data-toggle="tab">Block users</a></li>
+		                <li><a href="#tab_listUser" data-toggle="tab">List users</a></li>
+		                <br>
+		                <p> Manage Roles </p>
+		                <li><a href="#tab_manageRoles" data-toggle="tab">Create/Update Roles</a></li>
+		                <!-- <li><a href="#tab_addRemoveRoles" data-toggle="tab">Add/Remove Roles</a></li>-->
+		                
+		            </ul>
+	            </nav>
+	            <div class="tab-content" style="margin-top: 50px;">
+	            	 
+					<div class="tab-pane active" id="tab_createUser">
+	                    <%@ include file="users.jsp"%>
+	                </div>
+	                 <div class="tab-pane" id="tab_manageUserRoles">
+	                    <%@ include file="manageUserRoles.jsp"%>
+	                </div>
+	                
+	                <div class="tab-pane" id="tab_blockUser">
+	                    <%@ include file="blockUser.jsp"%>
+	                </div>
+	                <div class="tab-pane" id="tab_listUser">
+	                    <%@ include file="listUser.jsp"%>
+	                </div>
+	                <div class="tab-pane" id="tab_manageRoles">
+	                    <%@ include file="manageRoles.jsp"%>
+	                </div>
+	                 <div class="tab-pane" id="tab_addRemoveRoles">
+	                    <%@ include file="addRemoveRoles.jsp"%>
+	                </div>
+	                
+	            </div>
+	    	</div>
         </div>
     </div>
     <script>
@@ -62,5 +76,6 @@
         var hash = window.location.hash;
         $('#myTab a[href="' + hash + '"]').tab('show');
     </script>
+    <link href="<c:url value="/resources/css/navstyle.css" />" rel="stylesheet">
 </body>
 </html>

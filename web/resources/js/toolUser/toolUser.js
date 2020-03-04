@@ -1,7 +1,7 @@
 var createUserSubmit = function() {
 	var toolUserName = $("#toolUserName").val();
 	var toolPassword = $("#toolPassword").val();
-	var rolesArr[] = $("#rolesSelect").val();
+	var rolesArr = $("#rolesSelect").val();
 	if(toolUserName == undefined || toolUserName == null) {
 		return;
 	}
@@ -14,8 +14,8 @@ var createUserSubmit = function() {
 //	$("#createUserForm").submit();
 	var url = "/users/createUser";
 	var data = {
-			"toolUserName" : toolUserName,
-			"toolPassword" : toolPassword,
+			"username" : toolUserName,
+			"password" : toolPassword,
 			"roles" : rolesArr
 	};
 	$.post(url, data, function(res) {
@@ -27,5 +27,5 @@ var createUserSubmit = function() {
 		} else {
 			alert("User creation FAILED !!!");
 		}
-	}
+	})
 };

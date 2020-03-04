@@ -179,7 +179,7 @@ public class PortalUserManagementServiceImpl implements PortalUserManagementServ
 	}		 
 
 	@Override
-	public String createUser(PortalUser user) {		        
+	public String createUser(PortalUser user) {	
 		logger.info("service creating user");
 		try {
 			mongoTemplate.save(user);

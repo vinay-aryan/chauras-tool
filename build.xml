@@ -41,4 +41,9 @@
         <delete dir="build" />
     </target>
 
+<target name="print" depends="compile">
+
+        <echo> ${ant.java.version}</echo> 
+	<echo> ${java.version} </echo>
+    </target>
 </project>

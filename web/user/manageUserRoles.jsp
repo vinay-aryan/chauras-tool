@@ -21,6 +21,7 @@
 			<jsp:include page="../common/nav.jsp" />
 			<h3 class="fancy" style="margin-left: 50px; margin-bottom: 35px">Manage
 				User Roles</h3>
+			
 
 			<form action="/users/manageRoles" method="post" id="userManagement">
 				<p
@@ -44,7 +45,7 @@
 					</tr>
 				</c:forEach>
 			</form>
-			<input type="button" onClick="updateRoles();" value="Done"
+			<input type="button" onClick="updateRoles();" value="Update Role"
 				class="btn btn-primary" style="margin-left: 50px; margin-top: 30px">
 
 		</div>

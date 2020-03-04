@@ -186,7 +186,7 @@ public class AuthorizationInterceptor extends PathMatchingInterceptor {
                             }
                         }
                         catch (Exception e) {
-                            logger.error("Error in pupulating navigation modules", e);
+                            logger.error("Error in populating navigation modules", e);
                         }
                     }
                 }

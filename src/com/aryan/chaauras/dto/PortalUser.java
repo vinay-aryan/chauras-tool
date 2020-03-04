@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.aryan.chaauras.constants.Constants;
@@ -17,14 +18,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Document(collection = Constants.USER_COLLECTION_NAME)
 @TypeAlias(Constants.USER_COLLECTION_NAME)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+
 public class PortalUser {
+	
+	//@Indexed(unique = true)
 	private String username;
 	private String password;
+	private List<String> languages;
 	private List<String> roles;
 	private boolean isBlocked = false;
 
 	@JsonIgnore
 	private String group;
+	
+	//@Indexed(unique = true)
 	private String emailId;
 
 	public String getUsername() {
@@ -39,6 +46,13 @@ public class PortalUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public List<String> getLanguage() {
+		return languages;
+	}
+	public void setLanguage(List<String> languages) {
+		this.languages = languages;
+	}
+	
 	public List<String> getRoles() {
 		return roles;
 	}
@@ -82,6 +96,7 @@ public class PortalUser {
 		jsonObj.put("username", getUsername());
 		jsonObj.put("password", getPassword());
 		jsonObj.put("emailId", getEmailId());
+		jsonObj.put("language", getLanguage());
 		jsonObj.put("isBlocked", isBlocked());
 		jsonObj.putAll(getRoleArrayJson());
 		return jsonObj;
@@ -113,6 +128,8 @@ public class PortalUser {
 			setUsername(((String)valueMap.get("username")));
 		if(valueMap.containsKey("password"))
 			setPassword(((String)valueMap.get("password")));
+		if(valueMap.containsKey("language"))
+			setLanguage(getListFromJsonArray(valueMap,"languages"));
 		if(valueMap.containsKey("emailId"))
 			setEmailId(((String)valueMap.get("emailId")));
 		if(valueMap.containsKey("roles"))
